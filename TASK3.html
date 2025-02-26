@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background-image: url(https://wallpapers.com/images/hd/red-and-blue-calculators-yxm0myfzuym67431.jpg);
+            background-size: cover;
+            text-align: center;
+            padding-top: 100px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 320px;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        td {
+            border: 3px solid black;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+            width: 100px;
+            height: 60px;
+        }
+        td:hover {
+            background-color: lightgray;
+        }
+        #display {
+            width: 90%;
+            height: 50px;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            border: none;
+            background-color: #f0f0f0;
+        }
+        #row{
+            border: 3px solid;
+            text-align: center;
+            background-size: 85px;
+            font-weight: bold;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMzBZhjwqsuPtUgwSPKGoQaO19mhirR59TgA&s);
+            background-position: 7px top;
+        }
+    </style>
+</head>
+<body>
+    <table align="center">
+        <tr>
+            <td colspan="3"><input type="text" id="display" disabled></td>
+        </tr>
+        <tr>
+            <td onclick="appendNumber('1')" id="row">1</td>
+            <td onclick="appendNumber('2')" id="row">2</td>
+            <td onclick="appendNumber('3')" id="row">3</td>
+        </tr>
+        <tr>
+            <td onclick="appendNumber('4')" id="row">4</td>
+            <td onclick="appendNumber('5')" id="row">5</td>
+            <td onclick="appendNumber('6')" id="row">6</td>
+        </tr>
+        <tr>
+            <td onclick="appendNumber('7')" id="row">7</td>
+            <td onclick="appendNumber('8')" id="row">8</td>
+            <td onclick="appendNumber('9')" id="row">9</td>
+        </tr>
+        <tr>
+            <td onclick="appendOperator('+')" id="row">+</td>
+            <td onclick="appendNumber('0')" id="row">0</td>
+            <td onclick="appendOperator('-')" id="row">-</td>
+        </tr>
+        <tr>
+            <td onclick="appendOperator('*')" id="row">×</td>
+            <td onclick="calculateResult()" id="row">=</td>
+            <td onclick="appendOperator('/')" id="row">/</td>
+        </tr>
+        <tr>
+            <td colspan="3" onclick="clearDisplay()" style="background-color: rgb(247, 247, 22); color: black;">CLEAR</td>
+        </tr>
+    </table>
+
+    <script>
+        function appendNumber(number) {
+            document.getElementById("display").value += number;
+        }
+
+        function appendOperator(operator) {
+            document.getElementById("display").value += " " + operator + " ";
+        }
+
+        function calculateResult() {
+            let expression = document.getElementById("display").value;
+            try {
+                document.getElementById("display").value = eval(expression);
+            } catch (e) {
+                alert("Invalid Expression");
+            }
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+    </script>
+</body>
+</html>
